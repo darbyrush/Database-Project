@@ -16,5 +16,4 @@ CREATE TABLE Investment (
     NumShares INT,
     PurchasePrice INT,
     StillOwned INT;
-
 )
