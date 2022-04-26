@@ -1,0 +1,20 @@
+CREATE TABLE Investor (
+    InvestorID INT,
+    Name VARCHAR(50),
+    Email VARCHAR(50);
+);
+
+CREATE TABLE Cryptocurrency (
+    CryptocurrencyID INT,
+    CryptoName VARCHAR(50),
+    CurrentValue INT;
+);
+
+CREATE TABLE Investment (
+    InvestorID INT,
+    CryptocurrencyID INT,
+    NumShares INT,
+    PurchasePrice INT,
+    StillOwned INT;
+
+)
