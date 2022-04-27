@@ -19,15 +19,27 @@ def close_con():
     cursor.close()
     connection.close()
 
-def sell(shares, price, owned):
+def still_owned(inv_id, crypto_id, sold):
+    owned = cursor.execute('SELECT NumShares FROM Investment WHERE InvestorId = ' + str(inv_id) + ', CryptocurrencyId = ' + str(crypto_id))
+    if (sold == owned):
+        return '0'
+    elif (sold < owned):
+        return '1'
+    else:
+        return 'error'
+
+def sell(inv_id, crypto_id, shares, price):
+    owned = still_owned(inv_id, crypto_id, shares)
+    if (owned == 'error'):
+        return
     sell_investment = ('UPDATE Investment '
-                    'SET (NumShares, PurchasePrice, StillOwned) '
-                    'VALUES (%s, %s, %s)'
-                    (shares, price, owned))
+                    'SET (InvestorId, CryptocurrencyId, NumShares, PurchasePrice, StillOwned) '
+                    'VALUES (%s, %s, %s, %s, %s)'
+                    (inv_id, crypto_id, shares, price, owned))
     cursor.execute(sell_investment)
 def main():
     establish_con()
-    sell(sys.argv[0], sys.argv[1], sys.argv[2])
+    sell(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
     close_con()
 
 main()

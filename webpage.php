@@ -76,12 +76,28 @@
 <form id="formElement3" style="display: none;">
     <label for="SellName">Name:</label><br>
     <input type="text" id="SellName" name="SellName"><br>
+    <label for="SellCrypto">Crypto:</label><br>
+    <input type="text" id="SellCrypto" name="SellCrypto"><br>
     <label for="SellNumShares">Number of shares:</label><br>
     <input type="text" id="SellNumShares" name="SellNumShares"><br>
     <label for="SellPrice">Sell Price:</label><br>
     <input type="text" id="SellPrice" name="SellPrice">
     <input name="sell" type="submit" value="Submit">
     </form>
+
+<!-- View all investments form -->
+<form id="formElement4" style="display: none;">
+    <label for="InvestorID">Investor ID:</label><br>
+    <input type="text" id="InvestorID" name="InvestorID"><br>
+    <input name="view_investors" type="submit" value="Submit">
+</form>
+
+<!-- View all investments form -->
+<form id="formElement5" style="display: none;">
+    <label for="CryptoID">Crypto ID:</label><br>
+    <input type="text" id="CryptoID" name="CryptoID"><br>
+    <input name="view_investments" type="submit" value="Submit">
+</form>
 
 </body>
 
@@ -130,10 +146,33 @@ if (isset($_POST['buy'])){
 if (isset($_POST['sell'])){
 
     $SellName = escapeshellarg($_POST[SellName]);
+    $SellCrypto = escapeshellarg($_POST[SellCrypto]);
     $SellNumShares = escapeshellarg($_POST[SellNumShares]);
     $SellPrice = escapeshellarg($_POST[SellPrice]);
 
-    $command = 'python3 addInvestor.py ' . $SellName . ' ' . $SellNumShares . ' ' . $SellPrice;
+    $command = 'python3 addInvestor.py ' . $SellName . ' ' . $SellCrypto . ' ' . $SellNumShares . ' ' . $SellPrice;
+
+    $escaped_command = escapeshellcmd($command);
+
+    system($escaped_command);
+}
+
+if (isset($_POST['view_investors'])){
+
+    $InvestorID = escapeshellarg($_POST[InvestorID]);
+
+    $command = 'python3 viewInvestors.py ' . $InvestorID;
+
+    $escaped_command = escapeshellcmd($command);
+
+    system($escaped_command);
+}
+
+if (isset($_POST['view_investments'])){
+
+    $CryptoID = escapeshellarg($_POST[CryptoID]);
+
+    $command = 'python3 viewInvestments.py ' . $CryptoID;
 
     $escaped_command = escapeshellcmd($command);
 

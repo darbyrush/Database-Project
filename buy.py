@@ -22,13 +22,13 @@ def close_con():
 def buy(investor, crypto, shares, price):
     buy_investment  = ('INSERT INTO Investment '
                         '(InvestorId, CryptocurrencyId, NumShares, PurchasePrice, StillOwned) '
-                        'VALUES (%s, %s, %s, %s)'
+                        'VALUES (%s, %s, %s, %s, 1)'
                         (investor, crypto, shares, price))
     cursor.execute(buy_investment)
 
 def main():
     establish_con()
-    buy(sys.argv[0], sys.argv[1], sys.argv[2], sys.argv[3])
+    buy(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
     close_con()
 
 main()
