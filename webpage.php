@@ -36,6 +36,23 @@
         document.getElementById('formElement5').style.display = 'block';
     }
 
+    // <!-- functions to close forms -->
+    function closeForm() {
+        document.getElementById('formElement').style.display = 'none';
+        }
+    
+        function closeForm1() {
+        document.getElementById('formElement1').style.display = 'none';
+        }
+
+        function closeForm2() {
+        document.getElementById('formElement2').style.display = 'none';
+        }
+
+        function closeForm3() {
+        document.getElementById('formElement3').style.display = 'none';
+        }
+
 </script>
 
 <button onclick="showForm()">Add an Investor</button>
@@ -45,68 +62,73 @@
 <button onclick="showForm4()">View all Investments</button>
 <button onclick="showForm5()">View all Investors</button>
 
-<!-- Add investor form -->
-<form id="formElement" style="display: none;" method='POST'>
-    <label for="InvestorID">Investor ID:</label><br>
-    <input type="text" id="InvestorID" name="InvestorID"><br>
-    <label for="Name">Name:</label><br>
-    <input type="text" id="Name" name="Name"><br>
-    <label for="Email">Email:</label><br>
-    <input type="text" id="Email" name="Email"><br>
-    <input name="add_inv" type="submit" value="Submit">
-</form>
-
-<!-- Add Crypto form -->
-<form id="formElement1" style="display: none;" method='POST'>
-    <label for="CryptocurrencyID">Cryptocurrency ID:</label><br>
-    <input type="text" id="CryptocurrencyID" name="CryptocurrencyID"><br>
-    <label for="CryptoName">Name:</label><br>
-    <input type="text" id="CryptoName" name="CryptoName"><br>
-    <label for="CurrentValue">Current Value:</label><br>
-    <input type="text" id="CurrentValue" name="CurrentValue">
-    <input name="add_crypto" type="submit" value="Submit">
+ <!-- Add investor form -->
+ <form id="formElement" style="display: none;" method='POST'>
+        <label for="InvestorID">Investor ID:</label><br>
+        <input type="text" id="InvestorID" name="InvestorID"><br>
+        <label for="Name">Name:</label><br>
+        <input type="text" id="Name" name="Name"><br>
+        <label for="Email">Email:</label><br>
+        <input type="text" id="Email" name="Email"><br>
+        <input name="add_inv" type="submit" value="Submit">
+        <button onclick="closeForm()">Close</button>
     </form>
-
-<!-- Buy investment form -->
-<form id="formElement2" style="display: none;" method='POST'>
-    <label for="InvestorID">Investor ID:</label><br>
-    <input type="text" id="InvestorID" name="InvestorID"><br>
-    <label for="CryptocurrencyID">Cryptocurrency ID:</label><br>
-    <input type="text" id="CryptocurrencyID" name="CryptocurrencyID"><br>
-    <label for="NumShares">Number of Shares:</label><br>
-    <input type="text" id="NumShares" name="NumShares"><br>
-    <label for="PurchasePrice">Purchase Price:</label><br>
-    <input type="text" id="PurchasePrice" name="PurchasePrice"><br>
-    <input name="buy" type="submit" value="Submit">
+    
+    <!-- Add Crypto form -->
+    <form id="formElement1" style="display: none;" method='POST'>
+        <label for="CryptocurrencyID">Cryptocurrency ID:</label><br>
+        <input type="text" id="CryptocurrencyID" name="CryptocurrencyID"><br>
+        <label for="CryptoName">Name:</label><br>
+        <input type="text" id="CryptoName" name="CryptoName"><br>
+        <label for="CurrentValue">Current Value:</label><br>
+        <input type="text" id="CurrentValue" name="CurrentValue">
+        <input name="add_crypto" type="submit" value="Submit">
+        <button onclick="closeForm1()">Close</button>
+        </form>
+    
+    <!-- Buy investment form -->
+    <form id="formElement2" style="display: none;" method='POST'>
+        <label for="InvestorID">Investor ID:</label><br>
+        <input type="text" id="InvestorID" name="InvestorID"><br>
+        <label for="CryptocurrencyID">Cryptocurrency ID:</label><br>
+        <input type="text" id="CryptocurrencyID" name="CryptocurrencyID"><br>
+        <label for="NumShares">Number of Shares:</label><br>
+        <input type="text" id="NumShares" name="NumShares"><br>
+        <label for="PurchasePrice">Purchase Price:</label><br>
+        <input type="text" id="PurchasePrice" name="PurchasePrice"><br>
+        <input name="buy" type="submit" value="Submit">
+        <button onclick="closeForm2()">Close</button>
+        </form>
+    
+    <!-- Sell investment form -->
+    <form id="formElement3" style="display: none;" method='POST'>
+        <label for="SellName">Investor ID:</label><br>
+        <input type="text" id="SellName" name="SellName"><br>
+        <label for="SellCrypto">Crypto ID:</label><br>
+        <input type="text" id="SellCrypto" name="SellCrypto"><br>
+        <label for="SellNumShares">Number of shares:</label><br>
+        <input type="text" id="SellNumShares" name="SellNumShares"><br>
+        <label for="SellPrice">Sell Price:</label><br>
+        <input type="text" id="SellPrice" name="SellPrice">
+        <input name="sell" type="submit" value="Submit">
+        <button onclick="closeForm3()">Close</button>
+        </form>
+    
+    <!-- View all investments form -->
+    <form id="formElement4" style="display: none;" method='POST'>
+        <label for="InvestorID">Investor ID:</label><br>
+        <input type="text" id="InvestorID" name="InvestorID"><br>
+        <input name="view_investors" type="submit" value="Submit">
+        
     </form>
-
-<!-- Sell investment form -->
-<form id="formElement3" style="display: none;" method='POST'>
-    <label for="SellName">Investor ID:</label><br>
-    <input type="text" id="SellName" name="SellName"><br>
-    <label for="SellCrypto">Crypto ID:</label><br>
-    <input type="text" id="SellCrypto" name="SellCrypto"><br>
-    <label for="SellNumShares">Number of shares:</label><br>
-    <input type="text" id="SellNumShares" name="SellNumShares"><br>
-    <label for="SellPrice">Sell Price:</label><br>
-    <input type="text" id="SellPrice" name="SellPrice">
-    <input name="sell" type="submit" value="Submit">
+    
+    <!-- View all investors form -->
+    <form id="formElement5" style="display: none;" method='POST'>
+        <label for="CryptoID">Crypto ID:</label><br>
+        <input type="text" id="CryptoID" name="CryptoID"><br>
+        <input name="view_investments" type="submit" value="Submit">
+       
     </form>
-
-<!-- View all investments form -->
-<form id="formElement4" style="display: none;" method='POST'>
-    <label for="InvestorID">Investor ID:</label><br>
-    <input type="text" id="InvestorID" name="InvestorID"><br>
-    <input name="view_investors" type="submit" value="Submit">
-</form>
-
-<!-- View all investors form -->
-<form id="formElement5" style="display: none;" method='POST'>
-    <label for="CryptoID">Crypto ID:</label><br>
-    <input type="text" id="CryptoID" name="CryptoID"><br>
-    <input name="view_investments" type="submit" value="Submit">
-</form>
-
 </body>
 
 <?php
