@@ -92,7 +92,7 @@ if (isset($_POST['add_inv'])){
     $name = escapeshellarg($_POST[Name]);
     $email = escapeshellarg($_POST[Email]);
 
-    $command = 'python3 addInvestor.py ' . $InvestorID . ' ' . $Name . ' ' . $Email;
+    $command = 'python3 addInv.py ' . $InvestorID . ' ' . $Name . ' ' . $Email;
 
     $escaped_command = escapeshellcmd($command);
 
