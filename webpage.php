@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
 <title>Cryptocurrency Investment Tracker</title>
 </head>
@@ -47,7 +45,7 @@
 <input type="text" id="Name" name="Name"><br>
 <label for="Email">Email:</label><br>
 <input type="text" id="Email" name="Email"><br>
-<input type="submit" value="Submit">
+<input name="add_inv" type="submit" value="Submit">
 
 </form>
 
@@ -59,7 +57,7 @@
     <input type="text" id="CryptoName" name="CryptoName"><br>
     <label for="CurrentValue">Current Value:</label><br>
     <input type="text" id="CurrentValue" name="CurrentValue">
-    <input type="submit" value="Submit">
+    <input name="add_crypto" type="submit" value="Submit">
     </form>
 
 <!-- Buy investment form -->
@@ -70,7 +68,7 @@
         <input type="text" id="PurchasePrice" name="PurchasePrice"><br>
         <label for="StillOwed">Still Owed:</label><br>
         <input type="text" id="StillOwed" name="StillOwed">
-        <input type="submit" value="Submit">
+        <input name="buy" type="submit" value="Submit">
         </form>
 
 <!-- Sell investment form -->
@@ -81,8 +79,62 @@
     <input type="text" id="SellNumShares" name="SellNumShares"><br>
     <label for="SellPrice">Sell Price:</label><br>
     <input type="text" id="SellPrice" name="SellPrice">
-    <input type="submit" value="Submit">
+    <input name="sell" type="submit" value="Submit">
     </form>
 
 </body>
-</html>
+
+<?php
+
+if (isset($_POST['add_inv'])){
+
+    $investorID = escapeshellarg($_POST[InvestorID]);
+    $name = escapeshellarg($_POST[Name]);
+    $email = escapeshellarg($_POST[Email]);
+
+    $command = 'python3 addInvestor.py ' . $InvestorID . ' ' . $Name . ' ' . $Email;
+
+    $escaped_command = escapeshellcmd($command);
+
+    system($escaped_command);
+}
+
+if (isset($_POST['add_crypto'])){
+
+    $InvestorID = escapeshellarg($_POST[InvestorID]);
+    $CryptoName = escapeshellarg($_POST[CryptoName]);
+    $CurrentValue = escapeshellarg($_POST[CurrentValue]);
+
+    $command = 'python3 addInvestor.py ' . $InvestorID . ' ' . $CryptoName . ' ' . $CurrentValue;
+
+    $escaped_command = escapeshellcmd($command);
+
+    system($escaped_command);
+}
+
+if (isset($_POST['buy'])){
+
+    $fname = escapeshellarg($_POST[fname]);
+    $PurchasePrice = escapeshellarg($_POST[PurchasePrice]);
+    $StillOwned = escapeshellarg($_POST[StillOwned]);
+
+    $command = 'python3 addInvestor.py ' . $fname . ' ' . $PurchasePrice . ' ' . $StillOwned;
+
+    $escaped_command = escapeshellcmd($command);
+
+    system($escaped_command);
+}
+
+if (isset($_POST['sell'])){
+
+    $SellName = escapeshellarg($_POST[SellName]);
+    $SellNumShares = escapeshellarg($_POST[SellNumShares]);
+    $SellPrice = escapeshellarg($_POST[SellPrice]);
+
+    $command = 'python3 addInvestor.py ' . $fname . ' ' . $PurchasePrice . ' ' . $StillOwned;
+
+    $escaped_command = escapeshellcmd($command);
+
+    system($escaped_command);
+}
+?>
