@@ -28,14 +28,22 @@
         document.getElementById('formElement3').style.display = 'block';
     }
 
+    function showForm4() {
+        document.getElementById('formElement4').style.display = 'block';
+    }
+
+    function showForm5() {
+        document.getElementById('formElement5').style.display = 'block';
+    }
+
 </script>
 
 <button onclick="showForm()">Add an Investor</button>
 <button onclick="showForm1()">Add a Cryptocurrency</button>
 <button onclick="showForm2()">Buy an Investment</button>
 <button onclick="showForm3()">Sell an Investment</button>
-<button>View all Investments</button>
-<button>View all Investors</button>
+<button onclick="showForm4()">View all Investments</button>
+<button onclick="showForm5()">View all Investors</button>
 
 <!-- Add investor form -->
 <form id="formElement" style="display: none;">
@@ -92,7 +100,7 @@
     <input name="view_investors" type="submit" value="Submit">
 </form>
 
-<!-- View all investments form -->
+<!-- View all investors form -->
 <form id="formElement5" style="display: none;">
     <label for="CryptoID">Crypto ID:</label><br>
     <input type="text" id="CryptoID" name="CryptoID"><br>
@@ -157,22 +165,22 @@ if (isset($_POST['sell'])){
     system($escaped_command);
 }
 
-if (isset($_POST['view_investors'])){
+if (isset($_POST['view_investments'])){
 
     $InvestorID = escapeshellarg($_POST[InvestorID]);
 
-    $command = 'python3 viewInvestors.py ' . $InvestorID;
+    $command = 'python3 viewInvestments.py ' . $InvestorID;
 
     $escaped_command = escapeshellcmd($command);
 
     system($escaped_command);
 }
 
-if (isset($_POST['view_investments'])){
+if (isset($_POST['view_investors'])){
 
     $CryptoID = escapeshellarg($_POST[CryptoID]);
 
-    $command = 'python3 viewInvestments.py ' . $CryptoID;
+    $command = 'python3 viewInvestors.py ' . $CryptoID;
 
     $escaped_command = escapeshellcmd($command);
 
