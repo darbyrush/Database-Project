@@ -46,7 +46,7 @@
 <button onclick="showForm5()">View all Investors</button>
 
 <!-- Add investor form -->
-<form id="formElement" style="display: none;">
+<form id="formElement" style="display: none;" method='POST'>
     <label for="InvestorID">Investor ID:</label><br>
     <input type="text" id="InvestorID" name="InvestorID"><br>
     <label for="Name">Name:</label><br>
@@ -57,7 +57,7 @@
 </form>
 
 <!-- Add Crypto form -->
-<form id="formElement1" style="display: none;">
+<form id="formElement1" style="display: none;" method='POST'>
     <label for="CryptocurrencyID">Cryptocurrency ID:</label><br>
     <input type="text" id="CryptocurrencyID" name="CryptocurrencyID"><br>
     <label for="CryptoName">Name:</label><br>
@@ -68,23 +68,23 @@
     </form>
 
 <!-- Buy investment form -->
-<form id="formElement2" style="display: none;">
+<form id="formElement2" style="display: none;" method='POST'>
     <label for="InvestorID">Investor ID:</label><br>
     <input type="text" id="InvestorID" name="InvestorID"><br>
     <label for="CryptocurrencyID">Cryptocurrency ID:</label><br>
     <input type="text" id="CryptocurrencyID" name="CryptocurrencyID"><br>
     <label for="NumShares">Number of Shares:</label><br>
-    <input type="text" id="NumShares" name="fname"><br>
+    <input type="text" id="NumShares" name="NumShares"><br>
     <label for="PurchasePrice">Purchase Price:</label><br>
     <input type="text" id="PurchasePrice" name="PurchasePrice"><br>
     <input name="buy" type="submit" value="Submit">
     </form>
 
 <!-- Sell investment form -->
-<form id="formElement3" style="display: none;">
-    <label for="SellName">Name:</label><br>
+<form id="formElement3" style="display: none;" method='POST'>
+    <label for="SellName">Investor ID:</label><br>
     <input type="text" id="SellName" name="SellName"><br>
-    <label for="SellCrypto">Crypto:</label><br>
+    <label for="SellCrypto">Crypto ID:</label><br>
     <input type="text" id="SellCrypto" name="SellCrypto"><br>
     <label for="SellNumShares">Number of shares:</label><br>
     <input type="text" id="SellNumShares" name="SellNumShares"><br>
@@ -94,14 +94,14 @@
     </form>
 
 <!-- View all investments form -->
-<form id="formElement4" style="display: none;">
+<form id="formElement4" style="display: none;" method='POST'>
     <label for="InvestorID">Investor ID:</label><br>
     <input type="text" id="InvestorID" name="InvestorID"><br>
     <input name="view_investors" type="submit" value="Submit">
 </form>
 
 <!-- View all investors form -->
-<form id="formElement5" style="display: none;">
+<form id="formElement5" style="display: none;" method='POST'>
     <label for="CryptoID">Crypto ID:</label><br>
     <input type="text" id="CryptoID" name="CryptoID"><br>
     <input name="view_investments" type="submit" value="Submit">
@@ -112,10 +112,9 @@
 <?php
 
 if (isset($_POST['add_inv'])){
-
     $InvestorID = escapeshellarg($_POST[InvestorID]);
-    $name = escapeshellarg($_POST[Name]);
-    $email = escapeshellarg($_POST[Email]);
+    $Name = escapeshellarg($_POST[Name]);
+    $Email = escapeshellarg($_POST[Email]);
 
     $command = 'python3 addInv.py ' . $InvestorID . ' ' . $Name . ' ' . $Email;
 
@@ -139,12 +138,12 @@ if (isset($_POST['add_crypto'])){
 
 if (isset($_POST['buy'])){
 
-    $InvestorId = escapeshellarg($_POST[InvestorId]);
-    $CryptocurrencyId = escapeshellarg($_POST[CryptocurrencyId]);
+    $InvestorID = escapeshellarg($_POST[InvestorID]);
+    $CryptocurrencyID = escapeshellarg($_POST[CryptocurrencyID]);
     $NumShares = escapeshellarg($_POST[NumShares]);
     $PurchasePrice = escapeshellarg($_POST[PurchasePrice]);
 
-    $command = 'python3 addInvestor.py ' . $InvestorId . ' ' . $CryptocurrencyId . ' ' . $NumShares . ' ' . $PurchasePrice;
+    $command = 'python3 buy.py ' . $InvestorID . ' ' . $CryptocurrencyID . ' ' . $NumShares . ' ' . $PurchasePrice;
 
     $escaped_command = escapeshellcmd($command);
 
