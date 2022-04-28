@@ -118,7 +118,7 @@
     <form id="formElement4" style="display: none;" method='POST'>
         <label for="InvestorID">Investor ID:</label><br>
         <input type="text" id="InvestorID" name="InvestorID"><br>
-        <input name="view_investors" type="submit" value="Submit">
+        <input name="view_investments" type="submit" value="Submit">
         
     </form>
     
@@ -126,7 +126,7 @@
     <form id="formElement5" style="display: none;" method='POST'>
         <label for="CryptoID">Crypto ID:</label><br>
         <input type="text" id="CryptoID" name="CryptoID"><br>
-        <input name="view_investments" type="submit" value="Submit">
+        <input name="view_investors" type="submit" value="Submit">
        
     </form>
 </body>
@@ -179,7 +179,7 @@ if (isset($_POST['sell'])){
     $SellNumShares = escapeshellarg($_POST[SellNumShares]);
     $SellPrice = escapeshellarg($_POST[SellPrice]);
 
-    $command = 'python3 addInvestor.py ' . $SellName . ' ' . $SellCrypto . ' ' . $SellNumShares . ' ' . $SellPrice;
+    $command = 'python3 sell.py ' . $SellName . ' ' . $SellCrypto . ' ' . $SellNumShares . ' ' . $SellPrice;
 
     $escaped_command = escapeshellcmd($command);
 

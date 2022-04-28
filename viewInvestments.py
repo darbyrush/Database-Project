@@ -1,10 +1,10 @@
 # Takes the ID of a cryptocurrency from webpage.php and returns all investors who own shares of that crypto
 import sys
-from mysql.connector import *
+import mysql.connector
 
 def establish_con():
     global connection 
-    connection = connect(
+    connection = mysql.connector.connect(
         # Enter mySQL credentials
         user='abflynn',
         password='Pex9oof6',
@@ -14,6 +14,7 @@ def establish_con():
 
     global cursor 
     cursor = connection.cursor()
+
 
 def close_con():
     cursor.close()
@@ -29,11 +30,22 @@ def view_investments(id):
                         'ORDER BY PurchasePrice '
                     ') AS A '
                     'WHERE A.InvestorId = %s '
-                    'ORDER BY TotalValue DESC'
-                    (id))
+                    'ORDER BY TotalValue DESC;'
+                    % (id))
     cursor.execute(view_investment)
 
 def main():
+
+    Results = ""
+
     establish_con()
     view_investments(sys.argv[1])
+    for (TotalValue, CryptoName) in cursor:
+        Results += str(TotalValue) + "            " + CryptoName + "\n"
     close_con()
+
+    print(Results)
+
+
+if __name__ == "__main__":
+    main()
